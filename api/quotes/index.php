@@ -24,10 +24,14 @@ $quote = new Quote($db);
 
 // Simple router based on the request method
 switch($method) {
-    case 'GET':
+case 'GET':
         if(isset($_GET['id'])) {
             require_once('read_single.php');
         } else {
+            // GRAB THE FILTERS FROM THE URL
+            $quote->author_id = isset($_GET['author_id']) ? $_GET['author_id'] : null;
+            $quote->category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
+            
             require_once('read.php');
         }
         break;

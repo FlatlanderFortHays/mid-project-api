@@ -43,6 +43,5 @@ if($num > 0) {
     }
     echo json_encode($quotes_arr);
 } else {
-    // Required message if the IDs exist but no quotes are linked to them
-    echo json_encode(['message' => 'No Quotes Found']); // [cite: 43]
+    echo json_encode([]); 
 }
