@@ -1,0 +1,17 @@
+# Database Credentials & Environment
+.env
+docker-compose.yml
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+
+# VS Code Specific
+.vscode/
+
+# PHP/Composer (if you use it later)
+vendor/
+composer.lock
+
+# Docker
+.docker/
