@@ -1,17 +1,20 @@
 <?php
-// Get ID from URL
-$author->id = isset($_GET['id']) ? $_GET['id'] : die();
+// Get ID from URL - use null instead of die()
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
-// Get author
-if($author->read_single()) {
-    // Create array
-    $author_arr = array(
-        'id' => $author->id,
-        'author' => $author->author_name
-    );
+if ($id) {
+    $author->id = $id;
 
-    // Make JSON
-    echo json_encode($author_arr);
+    // Get author
+    if($author->read_single()) {
+        $author_arr = array(
+            'id' => $author->id,
+            'author' => $author->author_name
+        );
+        echo json_encode($author_arr);
+    } else {
+        echo json_encode(array('message' => 'Author Not Found'));
+    }
 } else {
     echo json_encode(array('message' => 'Author Not Found'));
 }
