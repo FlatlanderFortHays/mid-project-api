@@ -118,7 +118,9 @@ class Quote {
         $stmt->bindParam(':id', $this->id);
 
         if($stmt->execute()) {
-            return true;
+            if($stmt->rowCount() > 0) {
+                return true;
+            }
         }
         return false;
     }
