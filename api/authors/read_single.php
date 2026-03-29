@@ -13,8 +13,8 @@ if ($id) {
         );
         echo json_encode($author_arr);
     } else {
-        echo json_encode(array('message' => 'Author Not Found'));
+        echo json_encode(array('message' => 'author_id Not Found'));
     }
 } else {
-    echo json_encode(array('message' => 'Author Not Found'));
+    echo json_encode(array('message' => 'author_id Not Found'));
 }
