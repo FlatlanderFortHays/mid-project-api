@@ -1,5 +1,5 @@
 <?php
-// Get ID from URL - use null instead of die()
+// Get ID from URL
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
 if ($id) {
@@ -9,7 +9,7 @@ if ($id) {
     if($author->read_single()) {
         $author_arr = array(
             'id' => $author->id,
-            'author' => $author->author_name
+            'author' => $author->author 
         );
         echo json_encode($author_arr);
     } else {
