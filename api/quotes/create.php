@@ -41,5 +41,5 @@ if (!empty($data->quote) && !empty($data->author_id) && !empty($data->category_i
         ]);
     }
 } else {
-    echo json_encode(['message' => 'Missing Required Parameters']); [cite: 73]
+    echo json_encode(['message' => 'Missing Required Parameters']);
 }
