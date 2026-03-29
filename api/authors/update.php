@@ -2,19 +2,19 @@
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-// Requirement: Must contain id and category 
-if(!empty($data->id) && !empty($data->category)) {
-    $category->id = $data->id;
-    $category->category = $data->category;
+// Requirement: Must contain id and author 
+if(!empty($data->id) && !empty($data->author)) {
+    $author->id = $data->id;
+    $author->author = $data->author;
 
     // Attempt to update
-    if($category->update()) {
+    if($author->update()) {
         echo json_encode(
-            array('id' => $category->id, 'category' => $category->category)
+            array('id' => $author->id, 'author' => $author->author)
         );
     } else {
         // If the ID is valid but the record wasn't found [cite: 91]
-        echo json_encode(array('message' => 'category_id Not Found'));
+        echo json_encode(array('message' => 'author_id Not Found'));
     }
 } else {
     // Required if parameters are missing [cite: 93]

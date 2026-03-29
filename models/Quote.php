@@ -96,4 +96,50 @@ class Quote {
         }
         return false;
     }
+
+    // Update Quote
+    public function update() {
+        $query = 'UPDATE ' . $this->table . '
+                  SET quote = :quote, author_id = :author_id, category_id = :category_id
+                  WHERE id = :id';
+
+        $stmt = $this->conn->prepare($query);
+
+        // Clean
+        $this->quote = htmlspecialchars(strip_tags($this->quote));
+        $this->author_id = htmlspecialchars(strip_tags($this->author_id));
+        $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        // Bind
+        $stmt->bindParam(':quote', $this->quote);
+        $stmt->bindParam(':author_id', $this->author_id);
+        $stmt->bindParam(':category_id', $this->category_id);
+        $stmt->bindParam(':id', $this->id);
+
+        if($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    // Delete Quote
+    public function delete() {
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+
+        $stmt = $this->conn->prepare($query);
+
+        // Clean
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        // Bind
+        $stmt->bindParam(':id', $this->id);
+
+        if($stmt->execute()) {
+            if($stmt->rowCount() > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -68,10 +68,7 @@ class Author {
         $stmt->bindParam(':id', $this->id);
 
         if($stmt->execute()) {
-            // Check if a row was actually updated
-            if($stmt->rowCount() > 0) {
-                return true;
-            }
+            return true;
         }
         return false;
     }
