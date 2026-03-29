@@ -4,6 +4,12 @@ require_once('../../models/Category.php');
 
 $data = json_decode(file_get_contents("php://input"));
 
+// Adding this since below for whatever reason wasn't catching it
+if (empty($data->quote) || empty($data->author_id) || empty($data->category_id)) {
+    echo json_encode(['message' => 'Missing Required Parameters']);
+    exit();
+}
+
 if (!empty($data->quote) && !empty($data->author_id) && !empty($data->category_id)) {
     $quote->quote = $data->quote;
     $quote->author_id = $data->author_id;
