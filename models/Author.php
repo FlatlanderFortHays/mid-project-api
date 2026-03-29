@@ -84,11 +84,14 @@ class Author {
         // Bind data
         $stmt->bindParam(':id', $this->id);
 
-        if($stmt->execute()) {
-            // Check if a row was actually deleted
-            if($stmt->rowCount() > 0) {
-                return true;
+        try {
+            if($stmt->execute()) {
+                if($stmt->rowCount() > 0) {
+                    return true;
+                }
             }
+        } catch (PDOException $e) {
+            return false;
         }
         return false;
     }
